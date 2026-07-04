@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Summit Peak Plumbing LLC — Licensed Master Plumber | Colorado Springs, CO</title>
+<meta name="description" content="Summit Peak Plumbing LLC — a licensed, Master Plumber-led plumbing company serving Colorado Springs and a 30-mile radius. Water heaters, repiping, drains, water treatment and more. 5.0★ on Thumbtack, license MP.03001524.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#faf8f4;
+    --stone:#f0ece4;
+    --card:#ffffff;
+    --pine:#1e3a2f;
+    --pine-2:#2c4f3e;
+    --pine-deep:#152b22;
+    --sage:#6b8f71;
+    --brass:#b8862d;
+    --brass-2:#d4a53f;
+    --brass-dark:#84601d;
+    --ink:#2a2f2c;
+    --muted:#5f6b63;
+    --line:#e4ddcd;
+    --cream:#f3ecd9;
+    --radius:18px;
+    --shadow:0 10px 30px rgba(30,58,47,.08);
+    --font-display:'Sora',system-ui,-apple-system,'Segoe UI',sans-serif;
+    --font-body:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+    --topo:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="260" height="260" viewBox="0 0 260 260"><g fill="none" stroke="%231e3a2f" stroke-opacity=".05" stroke-width="1.2"><path d="M20 130c0-40 40-70 90-70s110 25 110 70-55 75-110 75S20 170 20 130z"/><path d="M50 130c0-26 28-46 62-46s76 17 76 46-38 52-76 52-62-26-62-52z"/><path d="M80 130c0-14 15-25 33-25s41 9 41 25-20 28-41 28-33-14-33-28z"/><path d="M0 20c40 12 80-8 130-8s90 20 130 8"/><path d="M0 240c40-12 80 8 130 8s90-20 130-8"/></g></svg>');
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    font-family:var(--font-body);
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.6;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{font-family:var(--font-display);line-height:1.12;letter-spacing:-.02em;color:var(--pine)}
+  img,svg{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--brass);color:#fff}
+
+  /* ---------- scroll progress ---------- */
+  .progress-pipe{
+    position:fixed;top:0;left:0;right:0;height:4px;z-index:1000;
+    background:rgba(30,58,47,.08);
+  }
+  .progress-pipe .flow{
+    height:100%;width:100%;
+    transform:scaleX(0);transform-origin:left;
+    background:linear-gradient(90deg,var(--sage),var(--pine) 45%,var(--brass));
+    will-change:transform;
+  }
+
+  /* ---------- nav ---------- */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:900;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:1.1rem clamp(1.25rem,4vw,3rem);
+    transition:background .4s ease, box-shadow .4s ease, padding .4s ease;
+  }
+  .nav.scrolled{
+    background:rgba(250,248,244,.88);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    box-shadow:0 6px 24px rgba(30,58,47,.12);
+    padding-top:.7rem;padding-bottom:.7rem;
+  }
+  .brand{display:flex;align-items:center;gap:.65rem;font-family:var(--font-display);font-weight:800;font-size:1.05rem;letter-spacing:.01em;color:var(--pine)}
+  .brand svg{width:34px;height:34px;flex:none}
+  .brand span em{font-style:normal;color:var(--brass-dark)}
+  .nav-links{display:flex;gap:1.7rem;align-items:center;font-size:.92rem;font-weight:500;color:var(--ink)}
+  .nav-links a{position:relative;transition:color .25s}
+  .nav-links a:hover{color:var(--pine)}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:-5px;height:2px;width:100%;background:var(--brass);transform:scaleX(0);transform-origin:left;transition:transform .3s ease}
+  .nav-links a:hover::after{transform:scaleX(1)}
+  .nav-cta{
+    background:var(--pine);
+    color:var(--cream);font-weight:600;font-size:.9rem;
+    padding:.6rem 1.15rem;border-radius:999px;
+    box-shadow:0 6px 18px rgba(30,58,47,.25);
+    transition:transform .25s ease, box-shadow .25s ease, background .25s;
+  }
+  .nav-cta:hover{transform:translateY(-2px);background:var(--pine-2);box-shadow:0 10px 24px rgba(30,58,47,.35)}
+  .nav-cta::after{display:none}
+  @media(max-width:900px){.nav-links a:not(.nav-cta){display:none}}
+
+  /* ---------- hero (sunrise foothills) ---------- */
+  .hero{position:relative;height:100vh;min-height:660px;overflow:hidden;
+    background:linear-gradient(180deg,
+      #c6ddea 0%,
+      #dbe6dd 34%,
+      #efe9cd 56%,
+      #f7e3b4 74%,
+      #f8d493 100%);
+  }
+  .hero .birds{position:absolute;inset:0;opacity:.55}
+  .hero .layer{position:absolute;left:-5%;right:-5%;bottom:0;will-change:transform}
+  .hero .layer svg{width:100%;height:auto}
+  .hero-glow{
+    position:absolute;bottom:16%;right:12%;width:480px;height:480px;border-radius:50%;
+    background:radial-gradient(circle,rgba(255,224,150,.9),rgba(255,210,130,.35) 45%,transparent 70%);
+    filter:blur(8px);will-change:transform;
+  }
+  .hero-inner{
+    position:relative;z-index:5;height:100%;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:0 clamp(1.25rem,6vw,6rem);max-width:1200px;
+    will-change:transform,opacity;
+  }
+  .hero-badge{
+    display:inline-flex;align-items:center;gap:.5rem;width:fit-content;
+    font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--pine);border:1px solid rgba(30,58,47,.35);
+    padding:.45rem 1rem;border-radius:999px;margin-bottom:1.4rem;
+    background:rgba(250,248,244,.65);backdrop-filter:blur(4px);
+  }
+  .hero-badge .dot{position:relative;width:8px;height:8px;border-radius:50%;background:var(--brass)}
+  .hero-badge .dot::after{content:"";position:absolute;inset:-2px;border-radius:50%;border:2px solid rgba(184,134,45,.55);animation:ringGrow 2.2s ease-out infinite;will-change:transform,opacity}
+  @keyframes ringGrow{
+    0%{transform:scale(.6);opacity:1}
+    100%{transform:scale(2.8);opacity:0}
+  }
+  .hero h1{
+    font-size:clamp(2.6rem,7vw,5.4rem);font-weight:800;max-width:14ch;color:var(--pine);
+  }
+  .hero h1 .line{display:block;overflow:hidden}
+  .hero h1 .line span{display:inline-block;transform:translateY(110%);animation:riseUp .9s cubic-bezier(.22,1,.36,1) forwards}
+  .hero h1 .line:nth-child(2) span{animation-delay:.12s}
+  .hero h1 em{font-style:normal;background:linear-gradient(100deg,var(--brass) 20%,var(--brass-2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  @keyframes riseUp{to{transform:translateY(0)}}
+  .hero p.sub{
+    margin-top:1.4rem;max-width:50ch;font-size:clamp(1rem,1.5vw,1.2rem);color:var(--ink);
+    opacity:0;animation:fadeIn .8s ease .55s forwards;
+  }
+  .hero p.sub b{color:var(--pine)}
+  @keyframes fadeIn{to{opacity:1}}
+  .hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;margin-top:2.2rem;opacity:0;animation:fadeIn .8s ease .75s forwards}
+  .btn{
+    display:inline-flex;align-items:center;gap:.6rem;
+    font-family:var(--font-display);font-weight:700;font-size:1rem;
+    padding:1rem 1.7rem;border-radius:999px;transition:transform .25s ease,box-shadow .25s ease,background .25s;
+  }
+  .btn-primary{background:linear-gradient(135deg,var(--brass-2),var(--brass));color:#241a05;box-shadow:0 10px 26px rgba(184,134,45,.35)}
+  .btn-primary:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 16px 36px rgba(184,134,45,.5)}
+  .btn-ghost{border:1.5px solid rgba(30,58,47,.45);color:var(--pine);background:rgba(250,248,244,.5);backdrop-filter:blur(4px)}
+  .btn-ghost:hover{transform:translateY(-3px);border-color:var(--pine);box-shadow:0 10px 26px rgba(30,58,47,.18)}
+  .scroll-hint{
+    position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:6;
+    display:flex;flex-direction:column;align-items:center;gap:.5rem;
+    color:var(--cream);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+    opacity:0;animation:fadeIn 1s ease 1.4s forwards;
+  }
+  .scroll-hint .wheel{width:24px;height:38px;border:2px solid rgba(243,236,217,.6);border-radius:14px;position:relative}
+  .scroll-hint .wheel::before{content:"";position:absolute;top:6px;left:50%;width:4px;height:8px;margin-left:-2px;border-radius:4px;background:var(--brass-2);animation:wheelDrop 1.8s ease-in-out infinite}
+  @keyframes wheelDrop{0%{transform:translateY(0);opacity:1}70%{transform:translateY(12px);opacity:0}100%{transform:translateY(0);opacity:0}}
+
+  /* ---------- marquee ---------- */
+  .marquee{
+    background:var(--pine);
+    color:var(--cream);overflow:hidden;padding:.85rem 0;position:relative;z-index:6;
+    font-family:var(--font-display);font-weight:700;font-size:.95rem;letter-spacing:.06em;text-transform:uppercase;
+  }
+  .marquee-track{display:flex;gap:3rem;width:max-content;animation:marquee 30s linear infinite;white-space:nowrap}
+  .marquee-track span{display:flex;align-items:center;gap:3rem}
+  .marquee-track b{font-weight:800}
+  .marquee-track i{font-style:normal;color:var(--brass-2)}
+  @keyframes marquee{to{transform:translateX(-50%)}}
+
+  /* ---------- shared section chrome ---------- */
+  section{position:relative}
+  .wrap{max-width:1200px;margin:0 auto;padding:clamp(4.5rem,9vw,8rem) clamp(1.25rem,4vw,3rem)}
+  .eyebrow{
+    font-size:.78rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--brass-dark);
+    display:flex;align-items:center;gap:.8rem;margin-bottom:1.1rem;
+  }
+  .eyebrow::before{content:"";width:34px;height:2px;background:currentColor}
+  .section-title{font-size:clamp(1.9rem,4vw,3.2rem);font-weight:800;max-width:22ch}
+  .section-sub{color:var(--muted);max-width:58ch;margin-top:1rem;font-size:1.05rem}
+
+  /* scroll reveal */
+  .reveal{opacity:0;transform:translateY(46px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1)}
+  .reveal.in{opacity:1;transform:translateY(0)}
+  .reveal[data-delay="1"]{transition-delay:.12s}
+  .reveal[data-delay="2"]{transition-delay:.24s}
+  .reveal[data-delay="3"]{transition-delay:.36s}
+
+  /* ---------- stats ---------- */
+  .stats{background:var(--stone) var(--topo);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;padding-top:4rem;padding-bottom:4rem}
+  .stat .stat-num{font-family:var(--font-display);line-height:1.12;letter-spacing:-.02em;font-size:clamp(2.2rem,4.5vw,3.6rem);font-weight:800;color:var(--pine)}
+  .stat .stat-num .accent{color:var(--brass-dark)}
+  .stat p{color:var(--muted);font-size:.92rem;margin-top:.3rem}
+  @media(max-width:820px){.stats .wrap{grid-template-columns:repeat(2,1fr)}}
+
+  /* ---------- company ---------- */
+  .about{background:var(--paper)}
+  .about-layout{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(2.5rem,5vw,5rem);align-items:center}
+  @media(max-width:900px){.about-layout{grid-template-columns:1fr}}
+  .cred-card{
+    position:relative;border-radius:24px;padding:2.4rem 2.2rem;
+    background:var(--card);
+    border:1px solid var(--line);
+    box-shadow:var(--shadow);
+  }
+  .cred-card::before{
+    content:"";position:absolute;top:0;left:2.2rem;right:2.2rem;height:4px;border-radius:0 0 4px 4px;
+    background:linear-gradient(90deg,var(--brass-2),var(--brass) 50%,var(--pine));
+  }
+  .cred-card .peak-mark{width:74px;height:74px;margin-bottom:1.4rem}
+  .cred-card h3{font-size:1.5rem}
+  .cred-card .role{color:var(--brass-dark);font-weight:600;font-size:.95rem;margin-bottom:1.6rem}
+  .cred-list{display:flex;flex-direction:column;gap:1rem}
+  .cred-list .row{display:flex;gap:.85rem;align-items:flex-start;font-size:.93rem;color:var(--ink)}
+  .cred-list .row svg{flex:none;margin-top:.15rem}
+  .cred-list .row b{color:var(--pine);display:block;font-size:.93rem}
+  .cred-list .row small{color:var(--muted)}
+  .about blockquote{
+    margin-top:1.8rem;padding:1.4rem 1.6rem;border-left:3px solid var(--brass);
+    background:var(--stone);border-radius:0 14px 14px 0;
+    color:var(--ink);font-size:1.02rem;font-style:italic;
+  }
+  .about blockquote footer{margin-top:.6rem;font-style:normal;font-size:.85rem;color:var(--brass-dark);font-weight:600}
+
+  /* ---------- services ---------- */
+  .services{background:var(--stone) var(--topo)}
+  .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:3.2rem}
+  @media(max-width:960px){.services-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:640px){.services-grid{grid-template-columns:1fr}}
+  .card{
+    position:relative;background:var(--card);
+    border:1px solid var(--line);border-radius:var(--radius);
+    padding:2rem 1.8rem;overflow:hidden;
+    box-shadow:var(--shadow);
+    transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .35s,box-shadow .35s;
+  }
+  .card:hover{transform:translateY(-8px);border-color:rgba(184,134,45,.5);box-shadow:0 24px 44px rgba(30,58,47,.16)}
+  .card .icon{
+    width:52px;height:52px;border-radius:14px;display:grid;place-items:center;margin-bottom:1.3rem;
+    background:rgba(107,143,113,.12);
+    border:1px solid rgba(107,143,113,.35);
+    color:var(--pine-2);
+    transition:transform .35s,background .35s,color .35s;
+  }
+  .card:hover .icon{transform:scale(1.08) rotate(-4deg);background:rgba(184,134,45,.14);color:var(--brass-dark)}
+  .card h3{font-size:1.18rem;margin-bottom:.6rem}
+  .card p{color:var(--muted);font-size:.93rem}
+  .card .tag{
+    position:absolute;top:1.3rem;right:1.3rem;font-size:.66rem;font-weight:700;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--brass-dark);border:1px solid rgba(184,134,45,.45);
+    padding:.25rem .6rem;border-radius:999px;background:rgba(212,165,63,.08);
+  }
+  .service-list{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:2.6rem}
+  .service-list span{
+    font-size:.85rem;font-weight:500;color:var(--ink);background:var(--card);
+    border:1px solid var(--line);padding:.45rem .95rem;border-radius:999px;
+    transition:border-color .3s,color .3s,transform .3s;
+  }
+  .service-list span:hover{border-color:var(--brass);color:var(--pine);transform:translateY(-2px)}
+
+  /* ---------- process (sticky) ---------- */
+  .process{background:var(--paper)}
+  .process-layout{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(2rem,5vw,5rem);align-items:start}
+  @media(max-width:900px){.process-layout{grid-template-columns:1fr}}
+  .process-sticky{position:sticky;top:110px}
+  @media(max-width:900px){.process-sticky{position:static}}
+  .steps{display:flex;flex-direction:column;gap:1.2rem;position:relative;padding-left:2.2rem}
+  .steps::before{content:"";position:absolute;left:13px;top:14px;bottom:14px;width:2px;background:var(--line)}
+  .steps .fill-line{position:absolute;left:13px;top:14px;width:2px;height:calc(100% - 28px);background:linear-gradient(180deg,var(--sage),var(--pine) 55%,var(--brass));transform:scaleY(0);transform-origin:top;will-change:transform}
+  .step{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:1.6rem 1.7rem;position:relative;box-shadow:var(--shadow);
+    transition:border-color .4s,background .4s;
+  }
+  .step .num{
+    position:absolute;left:-2.2rem;top:1.55rem;width:28px;height:28px;margin-left:-13px;
+    border-radius:50%;display:grid;place-items:center;
+    font-family:var(--font-display);font-weight:800;font-size:.75rem;
+    background:var(--paper);border:2px solid var(--line);color:var(--muted);
+    transition:all .4s;
+  }
+  .step.active{border-color:rgba(107,143,113,.6);background:#fbfdf9}
+  .step.active .num{background:var(--pine);border-color:var(--pine);color:var(--cream);box-shadow:0 0 0 4px rgba(107,143,113,.25)}
+  .step h3{font-size:1.1rem;margin-bottom:.45rem}
+  .step p{color:var(--muted);font-size:.92rem}
+
+  /* ---------- direct line (dark pine) ---------- */
+  .direct{
+    background:
+      radial-gradient(900px 420px at 50% -10%,rgba(212,165,63,.18),transparent 65%),
+      linear-gradient(180deg,var(--pine-deep),var(--pine));
+    text-align:center;
+  }
+  .direct .wrap{display:flex;flex-direction:column;align-items:center}
+  .direct .eyebrow{color:var(--brass-2);justify-content:center}
+  .direct h2{font-size:clamp(2rem,5vw,3.6rem);max-width:22ch;font-weight:800;color:var(--cream)}
+  .direct h2 em{font-style:normal;background:linear-gradient(100deg,var(--brass-2),#e8c06a);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .direct p{color:#c3d1c2;margin-top:1rem;max-width:54ch}
+  .phone-cta{
+    position:relative;margin-top:2.4rem;display:inline-flex;align-items:center;gap:1rem;
+    font-family:var(--font-display);font-weight:800;font-size:clamp(1.5rem,4vw,2.6rem);
+    color:#241a05;padding:1.1rem 2.4rem;border-radius:999px;
+    background:linear-gradient(135deg,#e0b352,var(--brass));
+    box-shadow:0 14px 34px rgba(0,0,0,.3);
+    transition:transform .25s;
+  }
+  .phone-cta::after{
+    content:"";position:absolute;inset:0;border-radius:999px;
+    border:2px solid rgba(212,165,63,.6);
+    animation:ctaRing 2.4s ease-out infinite;will-change:transform,opacity;
+  }
+  .phone-cta:hover{transform:scale(1.04)}
+  @keyframes ctaRing{
+    0%{transform:scale(1);opacity:.9}
+    70%{transform:scale(1.18);opacity:0}
+    100%{transform:scale(1.18);opacity:0}
+  }
+  .direct small{margin-top:1.2rem;color:#a9bba8;font-size:.88rem}
+
+  /* ---------- reviews ---------- */
+  .reviews{background:var(--paper)}
+  .rating-banner{display:flex;align-items:center;gap:1.2rem;margin-top:2.2rem;flex-wrap:wrap}
+  .rating-banner .score{
+    font-family:var(--font-display);font-weight:800;font-size:3rem;line-height:1;color:var(--brass-dark);
+  }
+  .rating-banner .meta{font-size:.92rem;color:var(--muted)}
+  .rating-banner .meta .stars{color:var(--brass);font-size:1.1rem;letter-spacing:.15em}
+  .rating-banner .meta b{color:var(--pine)}
+  .quotes-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem;margin-top:2.6rem}
+  @media(max-width:820px){.quotes-grid{grid-template-columns:1fr}}
+  .quote{
+    background:var(--card);
+    border:1px solid var(--line);border-radius:var(--radius);padding:2rem 1.8rem;
+    display:flex;flex-direction:column;gap:1.1rem;box-shadow:var(--shadow);
+    transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .35s;
+  }
+  .quote:hover{transform:translateY(-6px);border-color:rgba(184,134,45,.45)}
+  .quote .stars{color:var(--brass);letter-spacing:.2em;font-size:.95rem}
+  .quote p{color:var(--ink);font-size:.97rem;font-style:italic}
+  .quote footer{display:flex;align-items:center;gap:.8rem;margin-top:auto}
+  .quote .avatar{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-family:var(--font-display);font-weight:800;font-size:.9rem;color:var(--cream)}
+  .quote:nth-child(1) .avatar{background:var(--pine)}
+  .quote:nth-child(2) .avatar{background:var(--sage)}
+  .quote:nth-child(3) .avatar{background:var(--brass)}
+  .quote:nth-child(4) .avatar{background:var(--pine-2)}
+  .quote b{display:block;font-size:.92rem;color:var(--pine)}
+  .quote small{color:var(--muted);font-size:.78rem}
+  .reviews-link{display:inline-flex;align-items:center;gap:.5rem;margin-top:2.2rem;color:var(--brass-dark);font-weight:600;font-size:.95rem;border-bottom:1px solid rgba(184,134,45,.5);padding-bottom:2px;transition:color .3s}
+  .reviews-link:hover{color:var(--pine)}
+
+  /* ---------- service area ---------- */
+  .area{background:var(--stone) var(--topo)}
+  .area-layout{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:center}
+  @media(max-width:900px){.area-layout{grid-template-columns:1fr}}
+  .radar{position:relative;aspect-ratio:1;max-width:480px;margin:0 auto;width:100%}
+  .radar svg{width:100%;height:100%}
+  .ring{transform-origin:center;animation:ringPulse 3.6s ease-out infinite;opacity:0}
+  .ring.r2{animation-delay:1.2s}
+  .ring.r3{animation-delay:2.4s}
+  @keyframes ringPulse{
+    0%{transform:scale(.25);opacity:.8}
+    100%{transform:scale(1.05);opacity:0}
+  }
+  .towns{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.8rem}
+  .towns span{
+    font-size:.85rem;font-weight:500;color:var(--ink);background:var(--card);
+    border:1px solid var(--line);padding:.45rem .95rem;border-radius:999px;
+    transition:border-color .3s,color .3s,transform .3s;
+  }
+  .towns span:hover{border-color:var(--sage);color:var(--pine);transform:translateY(-2px)}
+
+  /* ---------- contact / footer ---------- */
+  .contact{background:var(--paper)}
+  .contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2.5rem,5vw,5rem)}
+  @media(max-width:900px){.contact-layout{grid-template-columns:1fr}}
+  .contact-info{display:flex;flex-direction:column;gap:1.6rem;margin-top:2.2rem}
+  .contact-info .row{display:flex;gap:1rem;align-items:flex-start}
+  .contact-info .icon{width:44px;height:44px;flex:none;border-radius:12px;display:grid;place-items:center;background:rgba(107,143,113,.12);border:1px solid rgba(107,143,113,.4);color:var(--pine-2)}
+  .contact-info b{font-family:var(--font-display);font-size:.95rem;color:var(--pine)}
+  .contact-info span{color:var(--muted);font-size:.9rem;display:block}
+  .pay-methods{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.5rem}
+  .pay-methods span{font-size:.78rem;font-weight:600;color:var(--ink);background:var(--stone);border:1px solid var(--line);padding:.3rem .7rem;border-radius:999px}
+  form.quote-form{
+    position:relative;border-radius:22px;padding:2.2rem;
+    background:var(--card);border:1px solid var(--line);box-shadow:0 18px 40px rgba(30,58,47,.12);
+    display:flex;flex-direction:column;gap:1rem;overflow:hidden;
+  }
+  form.quote-form::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:5px;
+    background:linear-gradient(90deg,var(--sage),var(--pine) 45%,var(--brass));
+  }
+  form.quote-form h3{font-size:1.3rem;margin-bottom:.4rem}
+  .field{display:flex;flex-direction:column;gap:.4rem}
+  .field label{font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .field input,.field select,.field textarea{
+    background:var(--paper);border:1px solid var(--line);border-radius:12px;
+    padding:.85rem 1rem;color:var(--ink);font-family:var(--font-body);font-size:.95rem;outline:none;
+    transition:border-color .3s,box-shadow .3s;
+  }
+  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--sage);box-shadow:0 0 0 3px rgba(107,143,113,.18)}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  @media(max-width:560px){.field-row{grid-template-columns:1fr}}
+  form .btn-primary{border:none;cursor:pointer;justify-content:center;margin-top:.4rem;font-family:var(--font-display)}
+  .footer-bar{
+    background:var(--pine-deep);
+    padding:1.6rem clamp(1.25rem,4vw,3rem);
+    display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;
+    color:#a9bba8;font-size:.82rem;
+  }
+
+  /* ---------- reduced motion ---------- */
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{
+      animation-duration:.01ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:.01ms !important;
+      scroll-behavior:auto !important;
+    }
+    .reveal{opacity:1;transform:none}
+    .hero h1 .line span{transform:none;animation:none}
+    .hero p.sub,.hero-ctas,.scroll-hint{opacity:1;animation:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-pipe" aria-hidden="true"><div class="flow" id="flow"></div></div>
+
+<nav class="nav" id="nav" aria-label="Main navigation">
+  <a class="brand" href="#top" aria-label="Summit Peak Plumbing — home">
+    <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+      <path d="M4 38 L18 12 L26 26 L32 16 L44 38 Z" fill="#1e3a2f"/>
+      <path d="M18 12 L22 20 L18 24 L14 20 Z" fill="#faf8f4"/>
+      <path d="M32 16 L35 22 L32 25 L29 22 Z" fill="#faf8f4"/>
+      <path d="M10 42 C18 38 30 38 38 42" stroke="#b8862d" stroke-width="3" stroke-linecap="round" fill="none"/>
+    </svg>
+    <span>Summit Peak <em>Plumbing</em></span>
+  </a>
+  <div class="nav-links">
+    <a href="#about">Why Us</a>
+    <a href="#services">Services</a>
+    <a href="#process">How It Works</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#area">Service Area</a>
+    <a class="nav-cta" href="tel:+17195550134">(719) 555-0134</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <svg class="birds" viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g fill="none" stroke="#3d5247" stroke-width="2" stroke-linecap="round">
+      <path d="M980 150 q 7 -6 14 0 q 7 -6 14 0"/>
+      <path d="M1040 120 q 6 -5 12 0 q 6 -5 12 0"/>
+      <path d="M1090 165 q 5 -4 10 0 q 5 -4 10 0"/>
+    </g>
+  </svg>
+
+  <div class="hero-glow" data-speed="0.12" aria-hidden="true"></div>
+
+  <!-- parallax foothill layers: far hazy ridges → near pine forest -->
+  <div class="layer" data-speed="0.15" style="bottom:-2%" aria-hidden="true">
+    <svg viewBox="0 0 1440 420" preserveAspectRatio="none">
+      <path d="M0 420 L0 300 L180 170 L300 260 L470 120 L620 250 L780 90 L950 240 L1120 140 L1280 250 L1440 180 L1440 420 Z" fill="#b3c6b6" opacity=".9"/>
+      <path d="M780 90 L810 118 L795 130 L780 115 L765 128 L751 117 Z" fill="#fbfdfb" opacity=".85"/>
+      <path d="M470 120 L496 144 L483 154 L470 141 L457 153 L445 143 Z" fill="#fbfdfb" opacity=".75"/>
+    </svg>
+  </div>
+  <div class="layer" data-speed="0.32" style="bottom:-2%" aria-hidden="true">
+    <svg viewBox="0 0 1440 380" preserveAspectRatio="none">
+      <path d="M0 380 L0 260 L160 150 L330 250 L520 80 L700 230 L880 120 L1060 240 L1240 130 L1440 240 L1440 380 Z" fill="#8aab90"/>
+      <path d="M520 80 L548 105 L534 116 L520 103 L506 115 L493 104 Z" fill="#fbfdfb" opacity=".8"/>
+      <path d="M880 120 L906 143 L893 153 L880 141 L867 152 L855 142 Z" fill="#fbfdfb" opacity=".7"/>
+    </svg>
+  </div>
+  <div class="layer" data-speed="0.55" style="bottom:-3%" aria-hidden="true">
+    <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <path d="M0 320 L0 230 L200 120 L400 240 L580 100 L800 250 L980 140 L1200 260 L1440 150 L1440 320 Z" fill="#4c7a5d"/>
+    </svg>
+  </div>
+  <div class="layer" data-speed="0.85" style="bottom:-4%" aria-hidden="true">
+    <svg viewBox="0 0 1440 260" preserveAspectRatio="none">
+      <path d="M0 260 L0 200 L150 110 L360 210 L560 90 L760 220 L960 110 L1180 220 L1440 120 L1440 260 Z" fill="#1e3a2f"/>
+    </svg>
+  </div>
+  <!-- near treeline -->
+  <div class="layer" data-speed="0.95" style="bottom:-1%" aria-hidden="true">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+      <path fill="#152b22" d="M0 50 H1440 V80 H0 Z
+        M20 22 L8 52 L32 52 Z M75 30 L63 52 L87 52 Z M130 18 L118 52 L142 52 Z M190 26 L178 52 L202 52 Z
+        M250 22 L238 52 L262 52 Z M305 32 L293 52 L317 52 Z M360 20 L348 52 L372 52 Z M425 28 L413 52 L437 52 Z
+        M490 22 L478 52 L502 52 Z M550 30 L538 52 L562 52 Z M610 18 L598 52 L622 52 Z M675 26 L663 52 L687 52 Z
+        M740 22 L728 52 L752 52 Z M800 30 L788 52 L812 52 Z M860 20 L848 52 L872 52 Z M925 28 L913 52 L937 52 Z
+        M990 22 L978 52 L1002 52 Z M1050 30 L1038 52 L1062 52 Z M1110 18 L1098 52 L1122 52 Z M1175 26 L1163 52 L1187 52 Z
+        M1240 22 L1228 52 L1252 52 Z M1300 30 L1288 52 L1312 52 Z M1360 20 L1348 52 L1372 52 Z M1420 26 L1408 52 L1432 52 Z"/>
+    </svg>
+  </div>
+
+  <div class="hero-inner" id="heroInner">
+    <span class="hero-badge"><span class="dot"></span> Licensed Master Plumber · Colorado Springs</span>
+    <h1>
+      <span class="line"><span>Plumbing at</span></span>
+      <span class="line"><span>its <em>peak.</em></span></span>
+    </h1>
+    <p class="sub">Summit Peak Plumbing LLC is a <b>Master Plumber-led</b> company serving Colorado Springs and everywhere within 30 miles — built on <b>25+ years of trade experience</b>, straightforward pricing, and a perfect 5.0-star record.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="#contact">Get a Free Quote
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="btn btn-ghost" href="tel:+17195550134">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Call or Text
+      </a>
+    </div>
+  </div>
+
+  <div class="scroll-hint" aria-hidden="true"><div class="wheel"></div>Scroll</div>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>
+      <b>Master Plumber · Lic. MP.03001524</b> <i>◆</i> <b>Background Checked</b> <i>◆</i> <b>5.0★ Exceptional on Thumbtack</b> <i>◆</i> <b>25+ Years of Trade Experience</b> <i>◆</i> <b>Straightforward Pricing</b> <i>◆</i> <b>Serving 30 Miles Around Colorado Springs</b> <i>◆</i>
+    </span>
+    <span>
+      <b>Master Plumber · Lic. MP.03001524</b> <i>◆</i> <b>Background Checked</b> <i>◆</i> <b>5.0★ Exceptional on Thumbtack</b> <i>◆</i> <b>25+ Years of Trade Experience</b> <i>◆</i> <b>Straightforward Pricing</b> <i>◆</i> <b>Serving 30 Miles Around Colorado Springs</b> <i>◆</i>
+    </span>
+  </div>
+</div>
+
+<section class="stats" aria-label="Company credentials">
+  <div class="wrap">
+    <div class="stat reveal"><p class="stat-num"><span class="count" data-target="25">0</span><span class="accent">+</span></p><p>Years of trade experience behind every job</p></div>
+    <div class="stat reveal" data-delay="1"><p class="stat-num"><span class="count" data-target="50" data-decimal="1">0</span><span class="accent">★</span></p><p>Thumbtack rating — "Exceptional"</p></div>
+    <div class="stat reveal" data-delay="2"><p class="stat-num"><span class="count" data-target="33">0</span></p><p>Verified reviews — 5.0 average</p></div>
+    <div class="stat reveal" data-delay="3"><p class="stat-num"><span class="count" data-target="100">0</span><span class="accent">%</span></p><p>Of work performed by a licensed Master Plumber</p></div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap about-layout">
+    <div class="cred-card reveal">
+      <svg class="peak-mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <path d="M4 38 L18 12 L26 26 L32 16 L44 38 Z" fill="#1e3a2f"/>
+        <path d="M18 12 L22 20 L18 24 L14 20 Z" fill="#faf8f4"/>
+        <path d="M32 16 L35 22 L32 25 L29 22 Z" fill="#faf8f4"/>
+        <path d="M10 42 C18 38 30 38 38 42" stroke="#b8862d" stroke-width="3" stroke-linecap="round" fill="none"/>
+      </svg>
+      <h3>Summit Peak Plumbing LLC</h3>
+      <p class="role">Licensed · Background Checked · Master Plumber-Led</p>
+      <div class="cred-list">
+        <div class="row">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1e3a2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          <div><b>Colorado Master Plumber license</b><small>Verified · MP.03001524</small></div>
+        </div>
+        <div class="row">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6b8f71" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0 1 14 0v1"/><path d="m16 11 2 2 4-4"/></svg>
+          <div><b>Background checked</b><small>Verified through Thumbtack</small></div>
+        </div>
+        <div class="row">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#b8862d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <div><b>5.0 · "Exceptional" on Thumbtack</b><small>Across 33 verified reviews</small></div>
+        </div>
+        <div class="row">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8f6820" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+          <div><b>Flexible payment</b><small>Cash · Check · Card · Stripe · Venmo</small></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p class="eyebrow reveal">Why Summit Peak</p>
+      <h2 class="section-title reveal">A plumbing company built on doing it right.</h2>
+      <p class="section-sub reveal" data-delay="1">Summit Peak Plumbing provides full-service residential plumbing across the Pikes Peak region — water heaters, water softeners, sump pumps, sewage ejectors, re-pipes, fixture replacements, plumbing permits, and virtually anything plumbing-related.</p>
+      <p class="section-sub reveal" data-delay="2">Every job is performed by a licensed Master Plumber — not a handyman, not a subcontractor — with clear communication, straightforward pricing, and respect for your home.</p>
+      <blockquote class="reveal" data-delay="2">
+        "Our commitment is simple: clear communication, fair pricing, and quality work done right."
+        <footer>— Summit Peak Plumbing LLC</footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="wrap">
+    <p class="eyebrow reveal">What we do</p>
+    <h2 class="section-title reveal">Full-service plumbing, from repair to full replacement.</h2>
+    <p class="section-sub reveal" data-delay="1">From a dripping faucet to a whole-home re-pipe with permits pulled — one call covers it. Clear diagnostics, straightforward pricing before work begins, and payment only when the job is done.</p>
+
+    <div class="services-grid">
+      <article class="card reveal">
+        <span class="tag">Urgent</span>
+        <div class="icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg></div>
+        <h3>Emergency Plumbing</h3>
+        <p>Burst pipes, failed water heaters, water where it shouldn't be — urgent calls go straight to a licensed plumber, not a dispatcher.</p>
+      </article>
+      <article class="card reveal" data-delay="1">
+        <span class="tag">Repair &amp; Install</span>
+        <div class="icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2c3 4.5 6 7.7 6 11a6 6 0 1 1-12 0c0-3.3 3-6.5 6-11z"/><path d="M10 14a2.5 2.5 0 0 0 2.5 2.5"/></svg></div>
+        <h3>Water Heaters</h3>
+        <p>Repair, maintenance, installation, and replacement — sized for Colorado winters, installed to code, and fully tested on completion.</p>
+      </article>
+      <article class="card reveal" data-delay="2">
+        <div class="icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10a2 2 0 0 1 2-2h4V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v16"/><path d="M2 20h20"/></svg></div>
+        <h3>Pipes &amp; Re-pipes</h3>
+        <p>Pipe repair, installation, and whole-home re-pipes with permits pulled and inspected — code-compliant work, no shortcuts.</p>
+      </article>
+      <article class="card reveal">
+        <div class="icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/><circle cx="12" cy="12" r="2.5"/></svg></div>
+        <h3>Drains &amp; Sump Pumps</h3>
+        <p>Drain repairs that address the root cause — not just the clog — plus sump pump installation and replacement to keep basements dry.</p>
+      </article>
+      <article class="card reveal" data-delay="1">
+        <div class="icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v6"/><circle cx="12" cy="14" r="8"/><path d="M12 10v4l3 2"/></svg></div>
+        <h3>Water Treatment</h3>
+        <p>Water softener and reverse-osmosis system installation and replacement — cleaner, better-tasting water from every tap.</p>
+      </article>
+      <article class="card reveal" data-delay="2">
+        <div class="icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l-1 7H7L6 3z"/><path d="M12 10v5"/><path d="M8 21c0-2.2 1.8-4 4-4s4 1.8 4 4"/></svg></div>
+        <h3>Bath &amp; Kitchen Fixtures</h3>
+        <p>Toilets, sinks, faucets, showers, bathtubs, and garbage disposals — repaired or installed cleanly, tested thoroughly, left spotless.</p>
+      </article>
+    </div>
+
+    <div class="service-list reveal" data-delay="1" aria-label="Full list of services">
+      <span>Plumbing Drain Repair</span><span>Water Treatment Install &amp; Replacement</span><span>Shower &amp; Bathtub Install or Replacement</span>
+      <span>Plumbing Pipe Repair</span><span>Sink or Faucet Install or Replacement</span><span>Plumbing Pipe Install or Replacement</span>
+      <span>Water Heater Repair &amp; Maintenance</span><span>Water Heater Install or Replacement</span><span>Toilet Repair</span>
+      <span>Toilet Install or Replacement</span><span>Sink or Faucet Repair</span><span>Shower &amp; Bathtub Repair</span>
+      <span>Sump Pump Install or Replacement</span><span>Garbage Disposal Installation</span><span>Emergency Plumbing</span>
+    </div>
+  </div>
+</section>
+
+<section class="process" id="process">
+  <div class="wrap process-layout">
+    <div class="process-sticky">
+      <p class="eyebrow reveal">How it works</p>
+      <h2 class="section-title reveal">From first call to final walkthrough.</h2>
+      <p class="section-sub reveal" data-delay="1">No mystery invoices, no vanishing contractors. A clear, four-step process takes every job from your first call to a code-compliant fix — with the price agreed before work begins.</p>
+      <a class="btn btn-primary reveal" data-delay="2" href="#contact" style="margin-top:2rem">Start With a Free Quote
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+    <div class="steps" id="steps">
+      <div class="fill-line" id="fillLine" aria-hidden="true"></div>
+      <div class="step reveal"><span class="num">1</span><h3>Call, text, or request a quote online</h3><p>Describe the issue — calls are handled by a licensed plumber, not a call center. Texting photos of the problem speeds up the diagnosis.</p></div>
+      <div class="step reveal"><span class="num">2</span><h3>Straightforward quote</h3><p>Clear diagnostics and a firm price before any work begins. If hidden problems surface mid-job, work stops until the added scope is explained and approved.</p></div>
+      <div class="step reveal"><span class="num">3</span><h3>Quality workmanship</h3><p>Code-compliant repairs and installations backed by 25+ years of trade experience — clean, professional service with everything tested before the job is closed out.</p></div>
+      <div class="step reveal"><span class="num">4</span><h3>Pay on completion</h3><p>Payment is due when the work is done — not before. Cash, check, credit card, Stripe, or Venmo are all accepted.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="direct">
+  <div class="wrap">
+    <p class="eyebrow reveal">No call centers. No sales quotas.</p>
+    <h2 class="reveal">Your call goes straight to <em>a licensed plumber.</em></h2>
+    <p class="reveal" data-delay="1">No dispatchers, no rotating crews, no upsell scripts. The plumber who answers the phone is the Master Plumber who quotes the job and does the work.</p>
+    <a class="phone-cta reveal" data-delay="2" href="tel:+17195550134">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      (719) 555-0134
+    </a>
+    <small class="reveal" data-delay="3">Prefer to type? Text photos of the problem to the same number.</small>
+  </div>
+</section>
+
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <p class="eyebrow reveal">Verified reviews</p>
+    <h2 class="section-title reveal">Rated 5.0 — "Exceptional" on Thumbtack.</h2>
+    <div class="rating-banner reveal" data-delay="1">
+      <span class="score">5.0</span>
+      <div class="meta">
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        Rated <b>"Exceptional"</b> on Thumbtack · across <b>33 verified reviews</b>
+      </div>
+    </div>
+    <div class="quotes-grid">
+      <article class="quote reveal">
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p>"Great experience! Used Summit Peak for not one but two jobs at my rental property. Got the hot water back up and running quickly. Fixed a pressure issue at the house as well. Will use again."</p>
+        <footer><div class="avatar">TS</div><div><b>Todd S.</b><small>Verified Thumbtack review</small></div></footer>
+      </article>
+      <article class="quote reveal" data-delay="1">
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p>"An outstanding job replacing three toilets in our home and installing a new bidet. Professional, courteous, and efficient. The installation looks great and everything works flawlessly."</p>
+        <footer><div class="avatar">MD</div><div><b>Michael D.</b><small>Verified Thumbtack review</small></div></footer>
+      </article>
+      <article class="quote reveal" data-delay="2">
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p>"Installed our Kraus kitchen sink, faucet, and R.O. water filtration system with no issues. Everything was tested thoroughly and all connections were leak-free. Professional, efficient, and left everything clean."</p>
+        <footer><div class="avatar">LN</div><div><b>Lorena N.</b><small>Verified Thumbtack review</small></div></footer>
+      </article>
+      <article class="quote reveal" data-delay="3">
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p>"Quick to respond to my request and super informative. Very thorough in the work and explaining the process. Fairly priced and we will be hiring them again!"</p>
+        <footer><div class="avatar">KO</div><div><b>Kaitlyn O.</b><small>Verified Thumbtack review</small></div></footer>
+      </article>
+    </div>
+    <a class="reviews-link reveal" href="https://www.thumbtack.com/co/colorado-springs/repiping-specialists/summit-peak-plumbing-llc/service/566534068559044613" target="_blank" rel="noopener">
+      Read all 33 reviews on Thumbtack
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+    </a>
+  </div>
+</section>
+
+<section class="area" id="area">
+  <div class="wrap area-layout">
+    <div class="radar reveal" role="img" aria-label="Map showing a 30-mile service radius around Colorado Springs">
+      <svg viewBox="0 0 400 400">
+        <defs>
+          <radialGradient id="radarBg" cx="50%" cy="50%" r="55%">
+            <stop offset="0%" stop-color="#6b8f71" stop-opacity=".2"/>
+            <stop offset="100%" stop-color="#6b8f71" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <circle cx="200" cy="200" r="190" fill="url(#radarBg)"/>
+        <circle cx="200" cy="200" r="185" fill="none" stroke="rgba(30,58,47,.35)" stroke-width="1.5" stroke-dasharray="4 7"/>
+        <circle cx="200" cy="200" r="125" fill="none" stroke="rgba(30,58,47,.15)" stroke-width="1"/>
+        <circle cx="200" cy="200" r="65" fill="none" stroke="rgba(30,58,47,.15)" stroke-width="1"/>
+        <circle class="ring" cx="200" cy="200" r="185" fill="none" stroke="#6b8f71" stroke-width="2"/>
+        <circle class="ring r2" cx="200" cy="200" r="185" fill="none" stroke="#b8862d" stroke-width="2"/>
+        <circle class="ring r3" cx="200" cy="200" r="185" fill="none" stroke="#6b8f71" stroke-width="2"/>
+        <circle cx="200" cy="200" r="7" fill="#b8862d"/>
+        <circle cx="200" cy="200" r="12" fill="none" stroke="#b8862d" stroke-width="2" opacity=".6"/>
+        <text x="200" y="182" text-anchor="middle" fill="#1e3a2f" font-size="13" font-weight="700" font-family="Sora,sans-serif">Colorado Springs</text>
+        <g fill="#4c5a50" font-size="10.5" font-family="Inter,sans-serif">
+          <circle cx="176" cy="152" r="3" fill="#6b8f71"/><text x="176" y="140" text-anchor="middle">Manitou Springs</text>
+          <circle cx="214" cy="96" r="3" fill="#b8862d"/><text x="214" y="84" text-anchor="middle">Monument</text>
+          <circle cx="222" cy="286" r="3" fill="#b8862d"/><text x="222" y="304" text-anchor="middle">Fountain</text>
+          <circle cx="296" cy="168" r="3" fill="#6b8f71"/><text x="296" y="156" text-anchor="middle">Falcon</text>
+          <circle cx="104" cy="176" r="3" fill="#b8862d"/><text x="104" y="164" text-anchor="middle">Woodland Park</text>
+          <circle cx="206" cy="248" r="3" fill="#6b8f71"/><text x="206" y="266" text-anchor="middle">Security-Widefield</text>
+          <circle cx="290" cy="248" r="3" fill="#6b8f71"/><text x="290" y="266" text-anchor="middle">Peyton</text>
+        </g>
+        <text x="330" y="205" fill="#5f6b63" font-size="10" font-family="Inter,sans-serif" transform="rotate(-14 330 205)">30-mile radius</text>
+      </svg>
+    </div>
+    <div>
+      <p class="eyebrow reveal">Where we work</p>
+      <h2 class="section-title reveal">30 miles of the Front Range, covered.</h2>
+      <p class="section-sub reveal" data-delay="1">Summit Peak Plumbing is based in Colorado Springs and serves everything within a 30-mile radius — from Monument down to Fountain, Woodland Park out to Falcon.</p>
+      <div class="towns reveal" data-delay="2">
+        <span>Colorado Springs</span><span>Manitou Springs</span><span>Monument</span><span>Fountain</span>
+        <span>Security-Widefield</span><span>Falcon</span><span>Woodland Park</span><span>Peyton</span>
+        <span>Palmer Lake</span><span>Cimarron Hills</span><span>Black Forest</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap contact-layout">
+    <div>
+      <p class="eyebrow reveal">Get in touch</p>
+      <h2 class="section-title reveal">Ready when your pipes aren't.</h2>
+      <p class="section-sub reveal" data-delay="1">Describe the issue and Summit Peak will respond quickly with clear answers and a straightforward price — no runaround.</p>
+      <div class="contact-info">
+        <div class="row reveal" data-delay="1">
+          <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div><b>Call or text</b><span><a href="tel:+17195550134">(719) 555-0134</a></span></div>
+        </div>
+        <div class="row reveal" data-delay="2">
+          <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></div>
+          <div><b>Email</b><span><a href="mailto:hello@summitpeakplumbing.com">hello@summitpeakplumbing.com</a></span></div>
+        </div>
+        <div class="row reveal" data-delay="3">
+          <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div>
+          <div><b>Payment on completion</b>
+            <div class="pay-methods"><span>Cash</span><span>Check</span><span>Credit card</span><span>Stripe</span><span>Venmo</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <form class="quote-form reveal" data-delay="1" action="#" method="post">
+      <h3>Request a free quote</h3>
+      <div class="field-row">
+        <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" type="text" placeholder="Jane Doe" required></div>
+        <div class="field"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" placeholder="(719) 555-0000" required></div>
+      </div>
+      <div class="field"><label for="f-service">What do you need?</label>
+        <select id="f-service" name="service">
+          <option>Emergency plumbing</option>
+          <option>Water heater — repair or maintenance</option>
+          <option>Water heater — install or replacement</option>
+          <option>Pipe repair / re-pipe</option>
+          <option>Drain repair</option>
+          <option>Sump pump</option>
+          <option>Water treatment system (softener / R.O.)</option>
+          <option>Toilet — repair or install</option>
+          <option>Sink or faucet — repair or install</option>
+          <option>Shower or bathtub — repair or install</option>
+          <option>Garbage disposal installation</option>
+          <option>Something else</option>
+        </select>
+      </div>
+      <div class="field"><label for="f-msg">Tell us more</label><textarea id="f-msg" name="message" rows="4" placeholder="What's going on with your plumbing?"></textarea></div>
+      <button class="btn btn-primary" type="submit">Send Request
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </form>
+  </div>
+</section>
+
+<div class="footer-bar">
+  <span>© 2026 Summit Peak Plumbing LLC · Colorado Springs, CO · Master Plumber License MP.03001524 (CO)</span>
+  <span>Call or text: <a href="tel:+17195550134" style="color:#d4a53f;font-weight:600">(719) 555-0134</a></span>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- shared per-frame scroll effects (parallax, progress, steps) ---- */
+  var flow = document.getElementById('flow');
+  var nav = document.getElementById('nav');
+  var layers = document.querySelectorAll('.hero .layer, .hero-glow');
+  var hero = document.querySelector('.hero');
+  var heroInner = document.getElementById('heroInner');
+  var fillLine = document.getElementById('fillLine');
+  var stepsBox = document.getElementById('steps');
+  var stepEls = stepsBox ? stepsBox.querySelectorAll('.step') : [];
+  var isNarrow = window.innerWidth < 768;
+
+  function applyEffects(y){
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    flow.style.transform = 'scaleX(' + (max > 0 ? y / max : 0) + ')';
+    nav.classList.toggle('scrolled', y > 40);
+
+    if (!reduceMotion && y < hero.offsetHeight) {
+      var damp = isNarrow ? 0.4 : 1;
+      layers.forEach(function(el){
+        el.style.transform = 'translate3d(0,' + (y * parseFloat(el.dataset.speed) * damp) + 'px,0)';
+      });
+      var p = y / hero.offsetHeight;
+      heroInner.style.transform = 'translate3d(0,' + (y * 0.28) + 'px,0)';
+      heroInner.style.opacity = Math.max(0, 1 - p * 1.4);
+    }
+
+    if (stepsBox) {
+      var r = stepsBox.getBoundingClientRect();
+      var progress = Math.min(1, Math.max(0, (window.innerHeight * 0.65 - r.top) / r.height));
+      if (fillLine) fillLine.style.transform = 'scaleY(' + progress + ')';
+      stepEls.forEach(function(step){
+        var sr = step.getBoundingClientRect();
+        step.classList.toggle('active', sr.top < window.innerHeight * 0.65 && sr.bottom > window.innerHeight * 0.25);
+      });
+    }
+  }
+
+  /* ---- inertial smooth scrolling (desktop, fine pointers only) ---- */
+  var finePointer = window.matchMedia('(pointer: fine)').matches;
+  var smooth = finePointer && !reduceMotion;
+  var target = window.scrollY, current = target, rafId = null;
+
+  function maxScroll(){ return document.documentElement.scrollHeight - window.innerHeight; }
+  function clamp(v){ return Math.max(0, Math.min(maxScroll(), v)); }
+
+  function loop(){
+    current += (target - current) * 0.09;
+    if (Math.abs(target - current) < 0.5) { current = target; rafId = null; }
+    else rafId = requestAnimationFrame(loop);
+    window.scrollTo(0, current);
+    applyEffects(current);
+  }
+  function startLoop(){ if (rafId === null) rafId = requestAnimationFrame(loop); }
+
+  if (smooth) {
+    window.addEventListener('wheel', function(e){
+      if (e.ctrlKey) return; // let pinch-zoom through
+      if (e.target.closest && e.target.closest('textarea, select')) return; // let inner scrollables scroll
+      e.preventDefault();
+      var delta = e.deltaMode === 1 ? e.deltaY * 16
+                : e.deltaMode === 2 ? e.deltaY * window.innerHeight
+                : e.deltaY;
+      target = clamp(target + delta);
+      startLoop();
+    }, { passive: false });
+
+    // keep in sync when scroll happens by other means (keyboard, scrollbar, find-in-page);
+    // if the position moved further than our own scrollTo could have, the user took over — cede control
+    window.addEventListener('scroll', function(){
+      if (rafId !== null && Math.abs(window.scrollY - current) > 1.5) {
+        cancelAnimationFrame(rafId); rafId = null;
+      }
+      if (rafId === null) { target = current = window.scrollY; applyEffects(current); }
+    }, { passive: true });
+
+    // drive anchor links through the same engine
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){
+      a.addEventListener('click', function(e){
+        var el = document.querySelector(a.getAttribute('href'));
+        if (!el) return;
+        e.preventDefault();
+        target = clamp(el.getBoundingClientRect().top + window.scrollY - 70);
+        startLoop();
+      });
+    });
+  } else {
+    document.documentElement.style.scrollBehavior = 'smooth';
+    var ticking = false;
+    window.addEventListener('scroll', function(){
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function(){ applyEffects(window.scrollY); ticking = false; });
+    }, { passive: true });
+  }
+
+  window.addEventListener('resize', function(){
+    isNarrow = window.innerWidth < 768;
+    target = clamp(target);
+  }, { passive: true });
+  applyEffects(window.scrollY);
+
+  /* ---- reveal on scroll ---- */
+  var revealObserver = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(function(el){ revealObserver.observe(el); });
+
+  /* ---- animated counters ---- */
+  function animateCount(el){
+    var targetVal = parseFloat(el.dataset.target);
+    var decimal = el.dataset.decimal ? 1 : 0;
+    var duration = 1600;
+    var start = null;
+    function tick(ts){
+      if (!start) start = ts;
+      var p = Math.min(1, (ts - start) / duration);
+      var eased = 1 - Math.pow(1 - p, 3);
+      var val = targetVal * eased;
+      el.textContent = decimal ? (val / 10).toFixed(1) : Math.round(val).toLocaleString();
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    if (reduceMotion) {
+      el.textContent = decimal ? (targetVal / 10).toFixed(1) : targetVal.toLocaleString();
+    } else {
+      requestAnimationFrame(tick);
+    }
+  }
+  var countObserver = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting) {
+        animateCount(entry.target);
+        countObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.6 });
+  document.querySelectorAll('.count').forEach(function(el){ countObserver.observe(el); });
+})();
+</script>
+</body>
+</html>
